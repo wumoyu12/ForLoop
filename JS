@@ -2,10 +2,11 @@ window.addEventListener("load", addListener);
 
 function addListener()
 {
-
-	document.getElementById("btnsubmit").addEventListener("Click", AskNum);
+	
+	document.getElementById("btnsubmit").addEventListener("Click", AskNum());
 }
+
 function AskNum()
 {
-	
+	alert("A");
 }
