@@ -1,0 +1,11 @@
+window.addEventListener("load", addListener);
+
+function addListener()
+{
+
+	document.getElementById("btnsubmit").addEventListener("Click", AskNum);
+}
+function AskNum()
+{
+	
+}
