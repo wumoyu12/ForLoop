@@ -10,9 +10,9 @@ function AskNum()
 	CheckNum(howmany)
 }
 
-function CheckNum(num)
+function CheckNum(count)
 {
-	if(num % 1 != 0 || num == "" || num <= 0 || num > 8)
+	if(count % 1 != 0 || count == "" || count <= 0 || count > 8)
 	{
 		alert("Your input is invaild please enter the whole numbers that is between 1-8");
 		Clear();
@@ -24,7 +24,7 @@ function CheckNum(num)
 		var labelNum = document.getElementById("lblentnum");
 		Clear();
 		labelNum.textContent = "Enter your grades:"
-		AskGrade(num);
+		AskGrade(count);
 	}
 }
 
