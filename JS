@@ -1,12 +1,45 @@
 window.addEventListener("load", addListener);
-
 function addListener()
 {
-	
-	document.getElementById("btnsubmit").addEventListener("click", AskNum());
+	document.getElementById("btnsubmit").addEventListener("click",AskNum);
 }
 
 function AskNum()
 {
-	alert("A");
+  	var howmany = document.getElementById("txtnum").value;
+	CheckNum(howmany)
+}
+
+function CheckNum(num)
+{
+	if(num % 1 != 0 || num == "" || num <= 0 || num > 8)
+	{
+		alert("Your input is invaild please enter the whole numbers that is between 1-8");
+		Clear();
+		addListener();
+	}
+
+	else
+	  {
+		var labelNum = document.getElementById("lblentnum");
+		Clear();
+		labelNum.textContent = "Enter your grades:"
+		AskGrade(num);
+	}
+}
+
+function AskGrade(num)
+{
+	for (let i=0; i < num; i++)
+		{
+			var grade = document.getElementById("txtgrades").value
+			totalgrade =  parselnt(grade) + parselnt(grade);
+			Clear();
+			aler(totalgrade);
+		}
+}
+
+function Clear()
+{
+	document.getElementById("txtnum").value = "";
 }
