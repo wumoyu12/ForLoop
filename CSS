@@ -1,0 +1,23 @@
+h1
+{
+	color: #574453;
+	font-family: Times New Roman
+}
+
+body
+{
+	color: #131564;
+	font-family: Courier New;
+	background-color: #7ab3b4;
+}
+
+input
+{
+	margin-left: 5px;
+	width: 95px;
+}
+
+button
+{
+	font-family:Courier New;
+}
