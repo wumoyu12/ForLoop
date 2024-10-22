@@ -29,7 +29,7 @@ function CheckNum()
 	}
 	else
 	{
-		countvalid = "valid"
+		countvalid = "valid";
 	}
 }
 
@@ -43,7 +43,7 @@ function AskGrades()
 			count = count + 1;
 			if (count == howmany)
 			{
-				Calculate(count)
+				Calculate(count);
 			}
 			document.getElementById("txtnum").value = "";
 			document.getElementById("txtenter").focus();
@@ -66,7 +66,7 @@ function CheckGrade()
 	}
 }
 
-function Calculate(howmanygrade)
+function Calculate(gradenum)
 {
 	let gradesplit = grades.split(",");
 	var totalgrade = 0;
@@ -74,11 +74,11 @@ function Calculate(howmanygrade)
 
 	for (let i = 1; i <= count; i++)
 	{
-	    totalgrade += parseFloat(gradeArray[i]);
+	    totalgrade = totalgrade + parseFloat(gradeArray[i]);
 	    allgrades = allgrades + " Grade " + [i] + ": " + gradesplit[i];
 	}
 	
-	Average = Math.round((totalgrade / howmanygrade) * 100) / 100;
+	Average = Math.round((totalgrade / gradenum) * 100) / 100;
 	gpa = Math.round((average / 100 * 4) * 100) / 100;
 	
 	document.getElementById("lbldisplay").innerHTML = allgrades + "<br>Average: " + average + "<br>GPA: " + gpa;
