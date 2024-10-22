@@ -1,0 +1,86 @@
+window.addEventListener("load",addListener);
+var countvalid = "invalid", howmany = "", grade = "", grades="", gradevaild = "invaild", count=0;
+
+function addListener()
+{
+	document.getElementById("btnsubmit").addEventListener("click",Sumbit);
+}
+
+function AskNum()
+{
+	document.getElementById("txtnum").value = "";
+	if(countvalid = "valid")
+	{
+		AskGrades();
+	}
+	else
+	{
+		howmany = document.getElementById("txtnum").value;
+		CheckNum();
+	}
+}
+
+function CheckNum()
+{
+	if(count % 1 != 0 || count == "" || count <= 0 || count > 8)
+	{
+		alert("Your input is invaild please enter the whole numbers that is between 1-8");
+		document.getElementById("txtnum").value = "";
+		addListener();
+	}
+	else
+	{
+		countvalid = "valid"
+	}
+}
+
+function AskGrades()
+{
+	grade = parseInt(document.getElementById("txtenter").value);
+	CheckGrade();
+	if (gradevaild == "vaild")
+		{
+			grades = grades + "," + grade;
+			count = count + 1;
+			if (count == howmany)
+			{
+				Calculate(count)
+			}
+			document.getElementById("txtnum").value = "";
+			document.getElementById("txtenter").focus();
+		}
+	else
+	{
+		alert("Your input is invaild please enter the grade that is between 0-100");
+	}
+}
+
+function CheckGrade()
+{
+	if(grade == "" || grade < 0 || grade > 100)
+	{
+		gradevaild = "invaild";
+	}
+	else
+	{
+		gradevaild = "vaild";
+	}
+}
+
+function Calculate(howmanygrade)
+{
+	let gradesplit = grades.split(",");
+	var totalgrade = 0;
+	var allgrades = "";
+
+	for (let i = 1; i <= count; i++)
+	{
+	    totalgrade += parseFloat(gradeArray[i]);
+	    allgrades = allgrades + " Grade " + [i] + ": " + gradesplit[i];
+	}
+	
+	Average = Math.round((totalgrade / howmanygrade) * 100) / 100;
+	gpa = Math.round((average / 100 * 4) * 100) / 100;
+	
+	document.getElementById("lbldisplay").innerHTML = allgrades + "<br>Average: " + average + "<br>GPA: " + gpa;
+}
