@@ -1,0 +1,84 @@
+window.addEventListener("load", addListener);
+var countvalid = "invalid", howmany = "", grade = "", grades = "", gradevalid = "invalid", count = 0;
+
+function addListener() {
+    document.getElementById("btnsubmit").addEventListener("click", AskNum);
+}
+
+function AskNum() {
+    if (countvalid == "vaild") 
+    {
+		document.getElementById("lblnum").textContent = "Enter your grade(0-100):";
+		document.getElementById("txtnum").value="";
+        AskGrades();
+    } 
+    else 
+    {
+        howmany = parseInt(document.getElementById("txtnum").value);
+        CheckNum();
+    }
+}
+
+function CheckNum() 
+{
+    if(howmany % 1 != 0 || howmany == "" || howmany <= 0 || howmany > 8)
+    {
+        alert("Your input is invalid, please enter a whole number between 1-8");
+      	document.getElementById("txtnum").value="";
+		countvalid = "invalid";
+    } 
+    else
+    {
+        countvalid = "vaild";
+		AskNum();
+    }
+}
+
+function AskGrades() 
+	{
+	    grade = parseInt(document.getElementById("txtenter").value);
+	    CheckGrade();
+	    if (gradevalid == "valid") 
+    	{
+	        //grades = grades + "," + grade;
+	        count = count + 1;
+	        if (parseInt(count) = parseInt(howmany)) 
+	        {
+	            Calculate(count);
+	        }
+	        document.getElementById("txtenter").value = "";
+	        document.getElementById("txtenter").focus();
+	    } 
+	    else 
+	    {
+	        alert("Your input is invalid, please enter a grade between 0-100");
+	    }
+}
+
+function CheckGrade() 
+{
+    if (isNaN(grade) || grade < 0 || grade > 100) 
+    {
+        gradevalid = "invalid";
+    } 
+    else {
+        gradevalid = "valid";
+    }
+}
+
+function Calculate(gradenum) {
+    let gradesplit = grades.split(",");
+    var totalgrade = 0;
+    var allgrades = "";
+
+    for (let i = 1; i <= gradenum; i++) 
+    {
+        totalgrade = totalgrade + parseFloat(gradesplit[i]);
+        allgrades = allgrades + " Grade " + i + ": " + gradesplit[i] + "<br>";
+    }
+
+    let average = Math.round((totalgrade / gradenum) * 100) / 100;
+    let gpa = Math.round((average / 100 * 4) * 100) / 100;
+
+    document.getElementById("lbldisplay").innerHTML = allgrades + "<br>Average: " + average + "<br>GPA: " + gpa;
+}
