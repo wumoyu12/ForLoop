@@ -6,19 +6,25 @@ function addListener() {
 }
 
 function AskNum() {
-    if (countvalid = "valid") {  // 保持不变
+    if (countvalid = "valid") 
+    {
         AskGrades();
-    } else {
+    } 
+    else 
+    {
         howmany = parseInt(document.getElementById("txtnum").value);
         CheckNum();
     }
 }
 
 function CheckNum() {
-    if (isNaN(howmany) || howmany < 1 || howmany > 8) {
+    if (isNaN(howmany) || howmany < 1 || howmany > 8)
+    {
         alert("Your input is invalid, please enter a whole number between 1-8");
         document.getElementById("txtnum").value = "";
-    } else {
+    } 
+    else
+    {
         countvalid = "valid";
         AskGrades();
     }
@@ -27,23 +33,30 @@ function CheckNum() {
 function AskGrades() {
     grade = parseInt(document.getElementById("txtenter").value);
     CheckGrade();
-    if (gradevalid === "valid") {
+    if (gradevalid == "valid") 
+    {
         grades = grades + "," + grade;
         count = count + 1;
-        if (count == howmany) {
+        if (count == howmany) 
+        {
             Calculate(count);
         }
         document.getElementById("txtenter").value = "";
         document.getElementById("txtenter").focus();
-    } else {
+    } 
+    else 
+    {
         alert("Your input is invalid, please enter a grade between 0-100");
     }
 }
 
-function CheckGrade() {
-    if (isNaN(grade) || grade < 0 || grade > 100) {
+function CheckGrade() 
+{
+    if (isNaN(grade) || grade < 0 || grade > 100) 
+    {
         gradevalid = "invalid";
-    } else {
+    } 
+    else {
         gradevalid = "valid";
     }
 }
@@ -53,7 +66,8 @@ function Calculate(gradenum) {
     var totalgrade = 0;
     var allgrades = "";
 
-    for (let i = 1; i <= gradenum; i++) {
+    for (let i = 1; i <= gradenum; i++) 
+    {
         totalgrade = totalgrade + parseFloat(gradesplit[i]);
         allgrades = allgrades + " Grade " + i + ": " + gradesplit[i] + "<br>";
     }
