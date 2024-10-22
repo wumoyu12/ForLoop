@@ -8,7 +8,6 @@ function addListener()
 
 function AskNum()
 {
-	document.getElementById("txtnum").value = "";
 	if(countvalid = "valid")
 	{
 		AskGrades();
@@ -22,7 +21,7 @@ function AskNum()
 
 function CheckNum()
 {
-	if(count % 1 != 0 || count == "" || count <= 0 || count > 8)
+	if(count % 1 != 0 || count == "" || count < 1 || count > 8)
 	{
 		alert("Your input is invaild please enter the whole numbers that is between 1-8");
 		document.getElementById("txtnum").value = "";
