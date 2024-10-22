@@ -1,0 +1,65 @@
+window.addEventListener("load", addListener);
+var count = 0, grade = 0, average = 0, grades = [], count2 = 0, allGrades = "", trueFalse = false;
+
+function addListener() {
+	document.getElementById("btnsubmit").addEventListener("click", submit);
+}
+
+function submit() {
+	if (count === 0) {
+		count = parseInt(document.getElementById("txtenter").value);
+		checkCount();
+	} else {
+		addGrades();
+	}
+}
+
+function checkCount() {
+	if (isNaN(count) || count <= 1) {
+		alert("Invalid, please enter a number above 1");
+	} else {
+		document.getElementById("lblenter").textContent = "Enter the grade (0-100):";
+		document.getElementById("txtenter").value = "";
+		document.getElementById("txtenter").focus();
+	}
+}
+
+function addGrades() {
+	grade = parseInt(document.getElementById("txtenter").value);
+	checkGrade();
+
+	if (trueFalse) {
+		grades.push(grade);
+		count2++;
+
+		if (count2 === count) {
+			calculateResults();
+		} else {
+			document.getElementById("txtenter").value = "";
+			document.getElementById("txtenter").focus();
+		}
+	} else {
+		alert("Invalid, please enter a number between 0 and 100");
+		document.getElementById("txtenter").value = "";
+		document.getElementById("txtenter").focus();
+	}
+}
+
+function checkGrade() {
+	trueFalse = grade >= 0 && grade <= 100;
+}
+
+function calculateResults() {
+	average = 0;
+	allGrades = "";
+
+	for (let i = 0; i < grades.length; i++) {
+		average += grades[i];
+		allGrades += " Grade " + (i + 1) + ": " + grades[i];
+	}
+
+	average = Math.round((average / grades.length) * 100) / 100;
+	let gpa = Math.round((average / 100 * 4) * 100) / 100;
+
+	document.getElementById("lbldisplay").innerHTML = allGrades + "<br>Average: " + average + "<br>GPA: " + gpa;
+}
