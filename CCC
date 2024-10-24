@@ -1,0 +1,61 @@
+window.addEventListener("load", addListener);
+var countvalid = "invalid", howmany = "", grades = "", gradevalid = "invalid", count = 0, grade = "", numgrade = "invalid";
+
+function addListener() 
+{
+	if (countvalid == "valid")
+		{
+			document.getElementById("btnsubmit").addEventListener("click", AskGrades);
+		}
+	else
+	{
+		document.getElementById("btnsubmit").addEventListener("click", AskNum);
+	}
+}
+
+function AskNum() {
+	howmany = document.getElementById("txtnum").value;
+	Checkhowmany()
+	
+    if (countvalid == "valid") 
+    {
+		document.getElementById("lblnum").textContent = "Enter your grade(0-100):";
+		document.getElementById("txtnum").value="";
+		addListener();
+    } 
+    else 
+    {
+        howmany = document.getElementById("txtnum").value;
+        Checkhowmany();
+    }
+}
+
+function Checkhowmany() 
+{
+    if(howmany % 1 != 0 || howmany == "" || howmany <= 0 || howmany > 8)
+    {
+        alert("Your input is invalid, please enter a whole number between 1-8");
+      	document.getElementById("txtnum").value="";
+    } 
+    else
+    {
+        countvalid = "valid";
+    }
+}
+
+function AskGrades()
+{
+	alert("A");
+	grade = document.getElementById("txtnum").value;
+	grades = grade + ",";
+	CheckGrade();
+	if (gradevalid == "valid")
+		{
+			alert(grade);
+			CheckNum();
+			if (numgrade == "valid")
+				{
+					AddGrades();
+				}
+		}
+}
