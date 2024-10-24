@@ -1,5 +1,5 @@
 window.addEventListener("load", addListener);
-var countvalid = "invalid", howmany = "", grade = "", grades = "", gradevalid = "invalid", count = 0, allgrades = "", totalgrade = 0;
+var countvalid = "invalid", howmany = "", grades = "", gradevalid = "invalid", count = 0, grade = "", numgrade = "invalid";
 
 function addListener() 
 {
@@ -7,6 +7,8 @@ function addListener()
 }
 
 function AskNum() {
+	howmany = document.getElementById("txtnum").value;
+	Checkhowmany()
     if (countvalid == "vaild") 
     {
 		document.getElementById("lblnum").textContent = "Enter your grade(0-100):";
@@ -16,20 +18,64 @@ function AskNum() {
     else 
     {
         howmany = document.getElementById("txtnum").value;
-        CheckNum();
+        Checkhowmany();
     }
 }
 
-function CheckNum() 
+function Checkhowmany() 
 {
     if(howmany % 1 != 0 || howmany == "" || howmany <= 0 || howmany > 8)
     {
         alert("Your input is invalid, please enter a whole number between 1-8");
       	document.getElementById("txtnum").value="";
-		countvalid = "invalid";
     } 
     else
     {
         countvalid = "vaild";
     }
+}
+
+function AskGrades()
+{
+	
+	grade = document.getElementById("txtnum").value;
+	grades = grade + ",";
+	CheckGrade();
+	if (gradevalid == "valid")
+		{
+			alert(grade);
+			CheckNum();
+			if (numgrade == "valid")
+				{
+					AddGrades();
+				}
+		}
+}
+
+function CheckGrade()
+{
+	if (grade < 0 || grade > 100)
+		{
+			alert("Your input is invalid, please enter the grade that is between 0-100.");
+		}
+	else
+	{
+		grade = document.getElementById("txtnum").value;;
+		gradevalid = "valid";
+		count = count + 1;
+	}
+}
+
+function CheckNum()
+{
+	if (count == howmany)
+		{
+			aler("all");
+			numgrade = "valid";
+		}
+}
+
+function AddGrades()
+{
+	alert(grades);
 }
