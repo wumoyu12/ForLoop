@@ -1,5 +1,5 @@
 window.addEventListener("load", addListener);
-var countvalid = "invalid", howmany = "", grades = "", gradevalid = "invalid", count = 0, grade = "", numgrade = "invalid";
+var countvalid = "invalid", grades = "", count = "", grade = 0, average = 0, count2 = "", gradeval = 0, AllGrades = "", TrueFalse = "";
 
 function addListener() 
 {
@@ -14,8 +14,8 @@ function addListener()
 }
 
 function AskNum() {
-	howmany = document.getElementById("txtnum").value;
-	Checkhowmany()
+	count = document.getElementById("txtnum").value;
+	CheckNum()
 	
     if (countvalid == "valid") 
     {
@@ -25,16 +25,16 @@ function AskNum() {
     } 
     else 
     {
-        howmany = document.getElementById("txtnum").value;
-        Checkhowmany();
+        count = document.getElementById("txtnum").value;
+        CheckNum();
     }
 }
 
-function Checkhowmany() 
+function CheckNum() 
 {
-    if(howmany % 1 != 0 || howmany == "" || howmany <= 0 || howmany > 8)
+    if(count % 1 != 0 || count == "" || count < 0)
     {
-        alert("Your input is invalid, please enter a whole number between 1-8");
+        alert("Your input is invalid, please enter a number that is above 0");
       	document.getElementById("txtnum").value="";
     } 
     else
@@ -43,19 +43,62 @@ function Checkhowmany()
     }
 }
 
-function AskGrades()
+function AskGrades() 
 {
-	alert("A");
 	grade = document.getElementById("txtnum").value;
-	grades = grade + ",";
-	CheckGrade();
-	if (gradevalid == "valid")
+	CheckGrade(grade);
+	if (TrueFalse == "false") 
+	{
+		alert("Your input is invalid, please enter the grade between 0 and 100");
+	}
+	
+	else 
+	{
+		grades = grades + "," + grade;
+		count2 = count2 + 1;
+		if (count2 == count); 
 		{
-			alert(grade);
-			CheckNum();
-			if (numgrade == "valid")
-				{
-					AddGrades();
-				}
+			AddGrade(parseInt(count));
 		}
+
+		document.getElementById("txtnum").value = "";
+		document.getElementById("txtnum").focus();
+	}
+}
+
+function CheckGrade() 
+{
+	if (grade == "" || grade < 0 || grade > 100) 
+	{
+
+		TrueFalse = "false";
+	}
+	else
+	{
+		TrueFalse = "true";
+	}
+	document.getElementById("txtnum").value = "";
+	document.getElementById("txtnum").focus();
+}
+
+function AddGrade(howmany) 
+{
+	let start = 0;
+
+	for (let i = 1; i <= howmany; i++) 
+	{
+		let end = grades.indexOf(",", start + 1);
+		if (end == -1) end = grades.length;
+		let currentGrade = grades.substring(start + 1, end);
+		average = average + parseFloat(currentGrade);
+		AllGrades = AllGrades + " Grade " + i + ": " + currentGrade;
+		start = end;
+	}
+	
+	average = average / howmany;
+	let gpa = (average / 100) * 4;
+	average = Math.round(average * 100) / 100;
+	gpa = Math.round(gpa * 100) / 100;
+	document.getElementById("lbldisplay").innerHTML = AllGrades + "<br>" + "Average: " + average
+		+ "<br>" + "GPA: " + gpa;
 }
